@@ -1,4 +1,4 @@
-package com.microservices.orderservice.entity;
+package com.microservices.customerservice.entity;
 
 import java.util.Date;
 import java.util.Set;
