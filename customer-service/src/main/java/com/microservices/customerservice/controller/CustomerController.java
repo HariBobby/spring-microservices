@@ -3,6 +3,8 @@ package com.microservices.customerservice.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -20,6 +22,9 @@ import com.microservices.customerservice.entity.Order;
 @RestController
 @RequestMapping("/Customers")
 public class CustomerController {
+	
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -46,6 +51,8 @@ public class CustomerController {
 	
 	@GetMapping("/feign/orders/{id}")
 	public List<Order> getOrdersByCustomerFeign(@PathVariable("id") Long customerid) {
+		
+		LOGGER.info("CustomerController -> customer id {}",customerid);
 		
 		return orderServiceProxy.getOrderByCustomerId(customerid);
 
